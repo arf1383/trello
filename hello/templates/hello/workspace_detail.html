@@ -1,0 +1,28 @@
+{% extends "hello/layout.html" %}
+{% load custom_tags %} <!-- اضافه کردن این خط برای بارگذاری تگ‌های سفارشی -->
+
+{% block title %}Workspace Detail{% endblock %}
+
+{% block content %}
+    <h2>{{ workspace.name }}</h2>
+    <p>{{ workspace.description }}</p>
+
+    <h3>Members:</h3>
+    <ul>
+        {% for membership in memberships %}
+            <li>
+                {{ membership.user.username }} ({{ membership.user.first_name }} {{ membership.user.last_name }}) - Role: {{ membership.role }}
+                {% if member_tasks|get_item:membership.user %}
+                    <h4>Tasks:</h4>
+                    <ul>
+                        {% for task in member_tasks|get_item:membership.user %}
+                            <li>{{ task.title }} - {{ task.description }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No tasks assigned to this member.</p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

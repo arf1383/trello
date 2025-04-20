@@ -1,0 +1,62 @@
+{% extends "hello/layout.html" %}
+{% load custom_tags %}
+{% block title %}
+    Log a Message
+{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Log a Message</h4>
+        </div>
+        <div class="card-body">
+            <form method="POST" class="needs-validation" novalidate>
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="message_type" class="form-label">Message Type:</label>
+                    <select id="message_type" name="message_type" class="form-select" onchange="toggleTaskForm()" required>
+                        <option value="group" selected>Group Message</option>
+                        <option value="task">Task</option>
+                    </select>
+                </div>
+                <div id="group-message-form">
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message:</label>
+                        {{ form.message|add_class:"form-control" }}
+                    </div>
+                </div>
+                <div id="task-form" style="display: none;">
+                    <div class="mb-3">
+                        <label for="workspace" class="form-label">Select Workspace:</label>
+                        <select id="workspace" name="workspace" class="form-select">
+                            {% for workspace in workspaces %}
+                                <option value="{{ workspace.id }}">{{ workspace.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="user" class="form-label">Select User:</label>
+                        <select id="user" name="user" class="form-select">
+                            {% for user in users %}
+                                <option value="{{ user.id }}">{{ user.username }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="task_message" class="form-label">Task Message:</label>
+                        <textarea id="task_message" name="task_message" class="form-control" rows="3" required></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success w-100">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function toggleTaskForm() {
+        const messageType = document.getElementById('message_type').value;
+        document.getElementById('group-message-form').style.display = messageType === 'group' ? 'block' : 'none';
+        document.getElementById('task-form').style.display = messageType === 'task' ? 'block' : 'none';
+    }
+</script>
+{% endblock %}

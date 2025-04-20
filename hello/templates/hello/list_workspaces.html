@@ -1,0 +1,20 @@
+{% extends "hello/layout.html" %}
+{% block title %}My Workspaces{% endblock %}
+{% block content %}
+    <div class="workspace-box">
+        <h2><i class="bi bi-collection-fill me-2"></i>My Workspaces</h2>
+        <ul class="workspace-list">
+            {% for workspace in workspaces %}
+                <li class="workspace-item">
+                    <div class="workspace-details">
+                        <a href="{% url 'workspace_detail' workspace.id %}" class="workspace-name">{{ workspace.name }}</a>
+                        <p class="workspace-description">{{ workspace.description }}</p>
+                    </div>
+                    <a href="{% url 'add_team_member' workspace.id %}" class="btn btn-primary btn-sm add-member-btn">
+                        <i class="bi bi-person-plus"></i> Add Team Member
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

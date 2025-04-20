@@ -1,0 +1,18 @@
+{% extends "hello/layout.html" %}
+{% block title %}Create Task{% endblock %}
+{% block content %}
+    <h2>Create a New Task</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="title">Task Title:</label>
+        <input type="text" id="title" name="title" required>
+        <br>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea>
+        <br>
+        <label for="assigned_to">Assign To (Username):</label>
+        <input type="text" id="assigned_to" name="assigned_to">
+        <br>
+        <button type="submit">Create</button>
+    </form>
+{% endblock %}

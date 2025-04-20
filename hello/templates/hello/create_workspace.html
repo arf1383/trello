@@ -1,0 +1,15 @@
+{% extends "hello/layout.html" %}
+{% block title %}Create Workspace{% endblock %}
+{% block content %}
+    <div class="create-workspace-box form-box">
+        <h2><i class="bi bi-folder-plus me-2"></i>Create a New Workspace</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="name">Workspace Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description"></textarea>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+{% endblock %}
