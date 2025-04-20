@@ -1,25 +1,113 @@
-# Django Template
+# Trello-like Task Management Platform
 
-This sample repo contains the recommended structure for a Python Django project. In this sample, we use `django` to build a web application and the `unittest` to run tests.
+این پروژه یک پلتفرم مدیریت کارها و همکاری تیمی شبیه Trello است که با استفاده از Django و Django REST Framework توسعه داده شده است. کاربران می‌توانند ورک‌اسپیس ایجاد کنند، اعضا را دعوت کنند، برد و تسک بسازند و نقش‌ها و وظایف را مدیریت نمایند.
 
-For a more in-depth tutorial, see our [Django tutorial](https://code.visualstudio.com/docs/datascience/data-science-tutorial).
+## ویژگی‌ها
 
-The code in this repo aims to follow Python style guidelines as outlined in [PEP 8](https://peps.python.org/pep-0008/).
+- **ورک‌اسپیس (Workspace):** ایجاد و مدیریت ورک‌اسپیس‌ها با قابلیت عضویت چند کاربر و تعیین نقش (عضو، ادمین و ...).
+- **برد (Board):** ساخت بردهای مختلف برای هر ورک‌اسپیس جهت دسته‌بندی تسک‌ها.
+- **تسک (Task):** ایجاد، ویرایش و تخصیص تسک به اعضا با وضعیت، لیبل و تاریخ‌های مختلف.
+- **گزارش‌ها:** مشاهده گزارش‌های روزانه و ماهانه از انجام کارها.
+- **سیستم احراز هویت:** ثبت‌نام، ورود و خروج کاربران.
+- **رابط کاربری وب:** صفحات HTML با Bootstrap و قالب‌بندی مناسب برای مدیریت آسان‌تر.
+- **API:** ارائه API برای مدیریت برد، تسک، وضعیت و لیبل با سطح دسترسی مناسب (فقط اعضای گروه board_admin مجاز به مدیریت کامل هستند).
+- **مستندسازی Swagger:** مستندات API با drf-yasg و دسترسی از طریق `/swagger/`.
 
-## Running the Sample
+## ساختار پروژه
 
-To successfully run this example, we recommend the following VS Code extensions:
-- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
-- [Python Debugger](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy)
-- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance) 
+```
+trello/
+├── boards/                # اپلیکیشن مدیریت برد و تسک
+├── hello/                 # اپلیکیشن مدیریت پیام‌ها، ورک‌اسپیس و کاربران
+├── web_django/            # تنظیمات پروژه Django
+├── manage.py              # اسکریپت مدیریت Django
+├── requirements.txt       # وابستگی‌های پروژه
+├── Dockerfile             # فایل داکر برای اجرای پروژه
+├── docker-compose.yml     # اجرای پروژه و دیتابیس با Docker
+└── README.md              # این فایل
+```
 
-- Open the template folder in VS Code (**File** > **Open Folder...**)
-- Create a Python virtual environment using the **Python: Create Environment** command found in the Command Palette (**View > Command Palette**). Ensure you install dependencies found in the `pyproject.toml` file
-- Ensure your newly created environment is selected using the **Python: Select Interpreter** command found in the Command Palette
-- Create and initialize the database by running `python manage.py migrate` in an activated terminal. 
-- Run the app using the Run and Debug view or by pressing `F5`
-- Run tests by running `python manage.py test` in an activated terminal
+## نصب و راه‌اندازی
 
+### پیش‌نیازها
+
+- Python 3.11+
+- PostgreSQL
+- [pip](https://pip.pypa.io/en/stable/)
+- (اختیاری) Docker و Docker Compose
+
+### مراحل نصب
+
+1. **کلون کردن مخزن:**
+   ```bash
+   git clone <repo-url>
+   cd trello
+   ```
+
+2. **ساخت محیط مجازی و نصب وابستگی‌ها:**
+   ```bash
+   python -m venv .venv
+   .venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
+
+3. **تنظیم دیتابیس:**
+   - یک دیتابیس PostgreSQL بسازید و اطلاعات آن را در `web_django/settings.py` وارد کنید.
+
+4. **اجرای مهاجرت‌ها:**
+   ```bash
+   python manage.py migrate
+   ```
+
+5. **ساخت ابرکاربر (اختیاری):**
+   ```bash
+   python manage.py createsuperuser
+   ```
+
+6. **اجرای سرور:**
+   ```bash
+   python manage.py runserver
+   ```
+
+7. **(اختیاری) اجرای پروژه با Docker:**
+   ```bash
+   docker-compose up --build
+   ```
+
+## اجرای تست‌ها
+
+برای اجرای تست‌های پروژه:
+```bash
+python manage.py test
+```
+
+## نقاط ورود مهم
+
+- **صفحه اصلی:** `/`
+- **ورود:** `/login/`
+- **ثبت‌نام:** `/register/`
+- **لیست ورک‌اسپیس‌ها:** `/workspaces/`
+- **مستندات API:** `/swagger/`
+- **API بردها:** `/boards/api/boards/`
+
+## دسترسی‌ها و سطوح کاربری
+
+- فقط اعضای گروه `board_admin` می‌توانند برد و تسک را از طریق API مدیریت کنند.
+- اعضای ورک‌اسپیس می‌توانند تسک‌ها و بردهای مربوط به ورک‌اسپیس خود را مشاهده کنند.
+
+## توسعه‌دهندگان
+
+- [نام شما یا تیم توسعه‌دهنده]
+
+## لایسنس
+
+این پروژه تحت لایسنس MIT ارائه می‌شود.
+
+---
+
+### دیاگرام ارتباطی مدل‌ها
+
+```mermaid
 erDiagram
     USER ||--o{ WORKSPACE : member
     WORKSPACE ||--o{ BOARD : has
