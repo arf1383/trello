@@ -14,13 +14,14 @@
 
 ---
 
-<div align="center">
-  <img src="https://user-images.githubusercontent.com/arf1383/example-image-2.png" alt="صفحه خوش‌آمدگویی پروژه" width="700"/>
-  <img src="https://user-images.githubusercontent.com/arf1383/example-image-1.png" alt="داشبورد و پیام‌ها" width="700"/>
-  <br/>
-  <i>نمونه‌ای از محیط وب اپلیکیشن</i>
-</div>
+## 🎨 نمونه محیط پروژه
 
+<div align="center">
+  <img src="images/10.png" alt="نمونه اول" width="700"/>
+  <img src="images/12.png" alt="نمونه دوم" width="700"/>
+  <br/>
+  <i>نمونه‌ای از محیط پلتفرم</i>
+</div>
 ---
 
 ## ✨ ویژگی‌ها
