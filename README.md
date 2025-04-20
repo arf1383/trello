@@ -16,16 +16,6 @@
 
 ## 🎨 نمونه محیط پروژه
 
-<div align="center">
-  <img src="images/10.png" alt="نمونه اول" width="700"/>
-  <img src="images/12.png" alt="نمونه دوم" width="700"/>
-  <br/>
-  <i>نمونه‌ای از محیط پلتفرم</i>
-</div>
----
-
-## 🎨 نمونه محیط پروژه
-
 
 <div align="center">
   <img src="images/10.png" alt="نمونه اول" width="700"/>
